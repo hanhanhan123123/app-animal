@@ -1,12 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>유기동물 정보 조회</title>
 </head>
 <body>
-<h1>INDEX</h1>
+	<div style="text-align: center">
+		<h1>
+			유기동물 정보 조회 <small>(OPEN API 활용)</small>
+		</h1>
+		<div>총 ${total } 건의 유기동물정보가 존재합니다.</div>
+		<c:forEach items="${datas }" var = "obj">
+		<div>
+				${obj.kindCd } (${obj.specialMark }) 
+				${obj.orgNm } ${obj.happenPlace } 
+				<img src="${obj.filename }"/>
+			</div>
+		</c:forEach>
+
+	</div>
 </body>
 </html>
