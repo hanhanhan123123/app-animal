@@ -6,5 +6,5 @@ public class AnimalItems {
 	public AnimalItem[] getItem() {
 		return item;
 	}
-	
+
 }

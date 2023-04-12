@@ -27,9 +27,10 @@ public class IndexController extends HttpServlet {
 		String upr_cd = req.getParameter("upr_cd");
 		String pageNo = req.getParameter("pageNo");
 		String bgnde = req.getParameter("bgnde");
-		if (bgnde != null && bgnde.matches("\\d{4}-\\d{2}-\\d{2}")) {
-			// 2024-03-11
+		if (bgnde != null && bgnde.matches("\\d{4}-\\{2}-\\{2}")) {
+			// 2023-03-11
 			bgnde = bgnde.substring(0, 4) + bgnde.substring(5, 7) + bgnde.substring(8);
+			// bgnde = bgnde.replaceAll("-","");
 		}
 		String endde = req.getParameter("endde");
 		if (endde != null && endde.matches("\\d{4}-\\d{2}-\\d{2}")) {
@@ -41,13 +42,12 @@ public class IndexController extends HttpServlet {
 		if (animalResponse != null) {
 			req.setAttribute("datas", animalResponse.getBody().getItems().getItem());
 			req.setAttribute("total", animalResponse.getBody().getTotalCount());
-			int tot = animalResponse.getBody().getTotalCount();
 
+			// 페이지설정
+			int tot = animalResponse.getBody().getTotalCount();
 			req.setAttribute("lastPageNo", tot / 12 + (tot % 12 > 0 ? 1 : 0));
 		}
+
 		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
 	}
 }
-
-
-

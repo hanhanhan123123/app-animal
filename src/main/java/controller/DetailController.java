@@ -8,12 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import data.animal.AnimalItem;
+import util.AnimalAPI;
+
 @WebServlet("/detail")
 public class DetailController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		req.getParameter("key");
+
+		String no = req.getParameter("no");
+		AnimalItem item = AnimalAPI.findByDesertionNo(no);
+
+		req.setAttribute("item", item);
+		req.getRequestDispatcher("/WEB-INF/views/detail.jsp").forward(req, resp);
 	}
 }

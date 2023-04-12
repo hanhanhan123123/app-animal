@@ -6,6 +6,5 @@ public class SidoResponseResult {
 	public SidoResponse getResponse() {
 		return response;
 	}
-	
-	
+
 }

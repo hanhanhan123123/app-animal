@@ -6,6 +6,5 @@ public class AnimalResponseResult {
 	public AnimalResponse getResponse() {
 		return response;
 	}
-	
-	
+
 }

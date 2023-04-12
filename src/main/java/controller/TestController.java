@@ -17,7 +17,7 @@ public class TestController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest arg0, HttpServletResponse arg1) throws ServletException, IOException {
-		
+
 		String upr_cd = "6210000";
 		String upkind = "244000";
 		String pageNo = "1";
@@ -30,11 +30,8 @@ public class TestController extends HttpServlet {
 		params.put("upkind", upkind);
 		params.put("pageNo", pageNo);
 		params.put("bgnde", bgnde);
-		
 
 		String query = QueryStringBuilder.build(params);
 		System.out.println(query);
 	}
 }
-
-

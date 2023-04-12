@@ -17,14 +17,14 @@ public class SidoAPI {
 	public synchronized static SidoResponse getSidos() {
 		try {
 			String target = "http://apis.data.go.kr/1543061/abandonmentPublicSrvc/sido";
-			
+
 			Map<String, String> params = new HashMap<>();
 
-			params.put("serviceKey", "A5EL1P%2FnlWm9XSygDqasNBUyb2LpiutnyD5sDbuPI8AU8nwm9HqHxrGDAJ0eFhTyCPuxUJeg5QIekmNRwfoLIQ%3D%3D");
+			params.put("serviceKey",
+					"A5EL1P%2FnlWm9XSygDqasNBUyb2LpiutnyD5sDbuPI8AU8nwm9HqHxrGDAJ0eFhTyCPuxUJeg5QIekmNRwfoLIQ%3D%3D");
 			params.put("_type", "json");
 			params.put("numOfRows", "17");
 
-			
 			String queryString = QueryStringBuilder.build(params);
 
 			URI uri = new URI(target + "?" + queryString);
