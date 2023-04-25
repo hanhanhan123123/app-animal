@@ -15,6 +15,13 @@ import data.animal.AnimalResponse;
 import data.animal.AnimalResponseResult;
 
 public class AnimalAPI {
+
+	private static Map<String, AnimalItem> cache;
+	static {
+		cache = new HashMap<>();
+		// 서버에서 봤던 애들은 맵에 저장
+	}
+
 	// OPEN API 연동해서 데이터 받아와서 파싱해서 컨트롤러로 떤져주면 됨
 	public synchronized static AnimalResponse getAnimals(String upkind, String upr_cd, String pageNo, String bgnde,
 			String endde) {
@@ -35,7 +42,7 @@ public class AnimalAPI {
 			params.put("endde", endde == null ? "" : endde);
 
 			String queryString = QueryStringBuilder.build(params);
-			System.out.println(queryString);
+			//System.out.println(queryString);
 			URI uri = new URI(target + "?" + queryString);
 
 			// HttpClient 객체를 활용하는 방식
@@ -46,6 +53,11 @@ public class AnimalAPI {
 			Gson gson = new Gson();
 			AnimalResponseResult responseResult = gson.fromJson(response.body(), AnimalResponseResult.class);
 
+			for (AnimalItem one : responseResult.getResponse().getBody().getItems().getItem()) {
+				cache.put(one.getDesertionNo(), one);
+
+			}
+			//System.out.println("[SERVER] cache size :" + cache.size());
 			return responseResult.getResponse();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,7 +66,6 @@ public class AnimalAPI {
 	}
 
 	public static AnimalItem findByDesertionNo(String no) {
-		// TODO Auto-generated method stub
-		return null;
+		return cache.get(no); // 다시 데이터를 찾을떄 맵에 저장된 애를 쓰겠다.
 	}
 }

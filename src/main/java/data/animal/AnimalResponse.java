@@ -12,4 +12,11 @@ public class AnimalResponse {
 		return body;
 	}
 
+	@Override
+	public String toString() {
+		return "AnimalResponse [header=" + header + ", body=" + body + ", getHeader()=" + getHeader() + ", getBody()="
+				+ getBody() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
 }
